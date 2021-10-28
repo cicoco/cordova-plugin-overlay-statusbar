@@ -206,7 +206,22 @@ public class StatusBar extends CordovaPlugin {
             return true;
         }
 
+        if ("statusBarHeight".equals(action)) {
+            int statusBarHeight = getStatusBarHeight();
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, statusBarHeight));
+            return true;
+        }
+
         return false;
+    }
+
+    private int getStatusBarHeight() {
+        int height = 0;
+        int resourceId = cordova.getContext().getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            height = cordova.getContext().getResources().getDimensionPixelSize(resourceId);
+        }
+        return height;
     }
 
     private void setStatusBarBackgroundColor(final String colorPref) {

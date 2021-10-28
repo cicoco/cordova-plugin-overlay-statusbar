@@ -44,6 +44,8 @@
 
 - (void) hide:(CDVInvokedUrlCommand*)command;
 - (void) show:(CDVInvokedUrlCommand*)command;
+
+- (void) statusBarHeight:(CDVInvokedUrlCommand*)command;
     
 - (void) _ready:(CDVInvokedUrlCommand*)command;
 

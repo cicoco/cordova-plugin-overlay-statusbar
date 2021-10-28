@@ -321,6 +321,18 @@ static const void *kStatusBarStyle = &kStatusBarStyle;
     }
 }
 
+- (void) statusBarHeight:(CDVInvokedUrlCommand*)command{
+    float statusBarHeight = 0;
+    if (@available(iOS 13.0, *)) {
+        UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager;
+        statusBarHeight = statusBarManager.statusBarFrame.size.height;
+    }else {
+        statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    }
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsInt:statusBarHeight];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
 - (void) _backgroundColorByHexString:(NSString*)hexString
 {
     unsigned int rgbValue = 0;
