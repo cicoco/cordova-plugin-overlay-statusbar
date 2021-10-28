@@ -93,7 +93,11 @@ var StatusBar = {
     show: function () {
         exec(null, null, "StatusBar", "show", []);
         StatusBar.isVisible = true;
-    }
+    },
+
+    statusBarHeight: function (success) {
+        exec(success, null, "StatusBar", "statusBarHeight",[])
+   }
 
 };
 
